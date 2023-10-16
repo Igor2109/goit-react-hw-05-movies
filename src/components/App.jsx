@@ -8,29 +8,15 @@ import ReviewsPage from './pages/Reviews/ReviewsPage';
 
 export const App = () => {
   return (
-    <StyledAppContainer>
-      <header>
-        <nav>
-          <StyledNavLink className="header-link" to="/">
-            Home
-          </StyledNavLink>
-          <StyledNavLink className="header-link" to="/movies">
-            Movies
-          </StyledNavLink>
-          <StyledNavLink className="header-link" to="/movies/:movieId">
-          MovieDetails
-          </StyledNavLink>
-        </nav>
-      </header>
-
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/movies" element={<MoviesPage />} />
-        <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
-        <Route path="/movies/:movieId/cast" element={<CastPage />} />
-        <Route path="/movies/:movieId/reviews" element={<ReviewsPage />} />
-
+        <Route path="/" element={<Layout />} >
+           <Route index element={<HomePage />} />
+            <Route path="/movies" element={<MoviesPage />} />
+            <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
+            <Route path="/movies/:movieId/cast" element={<CastPage />} />
+            <Route path="/movies/:movieId/reviews" element={<ReviewsPage />} />
+        </Route>
       </Routes>
-    </StyledAppContainer>
+    
   );
 };
