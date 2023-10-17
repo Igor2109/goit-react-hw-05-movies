@@ -1,4 +1,6 @@
-import {NavLink, Outlet} from 'react-router-dom'
+import { StyledAppContainer, StyledNavLink } from 'components/Layout/Layout.styled';
+import { Suspense } from 'react';
+import { Outlet} from 'react-router-dom'
 const Layout = () => {
     return (
         <>        <StyledAppContainer>
@@ -10,14 +12,13 @@ const Layout = () => {
     <StyledNavLink className="header-link" to="/movies">
       Movies
     </StyledNavLink>
-    <StyledNavLink className="header-link" to="/movies/:movieId">
-    MovieDetails
-    </StyledNavLink>
   </nav>
 </header>
 </StyledAppContainer>
 <main >
+  <Suspense fallback={<div>Loading...</div>}>
     <Outlet/>
+    </Suspense>
 </main>
 </>
 
