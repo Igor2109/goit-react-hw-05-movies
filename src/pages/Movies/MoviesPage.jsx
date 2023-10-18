@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 
 const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [movies, setMovies] = useState({});
+  const [movies, setMovies] = useState([]);
 
   const query = searchParams.get('query');
 
@@ -14,7 +14,7 @@ const MoviesPage = () => {
       if (query) {
         try {
           const data = await getSearchMoviesByQuery(query);
-          setMovies(data.result);
+          setMovies(data.results);
         } catch (error) {}
       }
     };
