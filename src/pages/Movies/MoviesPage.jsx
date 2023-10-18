@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 
 const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [movies, setMovies] = useState({});
+  const [movies, setMovies] = useState([]);
 
   const query = searchParams.get('query');
 
