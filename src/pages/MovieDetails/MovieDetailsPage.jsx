@@ -1,11 +1,14 @@
 import { getMovieById } from 'components/services/Api';
-import React, { Suspense, useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import React, { Suspense, useEffect, useState, useRef } from 'react';
+import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
+  const location = useLocation();
 
   const [movie, setMovie] = useState({});
+
+  const backLinkRef = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     const getMovieDetails = async () => {
@@ -18,9 +21,13 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   console.log(movie);
+
   return (
     <div>
       <div>
+        <Link to={backLinkRef.current} className={CSS.goBackLink}>
+          Go back
+        </Link>
         Movie Details
         {movie && (
           <div>
