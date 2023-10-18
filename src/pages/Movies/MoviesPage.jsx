@@ -14,7 +14,7 @@ const MoviesPage = () => {
       if (query) {
         try {
           const data = await getSearchMoviesByQuery(query);
-          setMovies(data.result);
+          setMovies(data.results);
         } catch (error) {}
       }
     };
