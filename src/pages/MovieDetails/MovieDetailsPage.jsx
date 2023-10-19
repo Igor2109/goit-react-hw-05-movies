@@ -1,6 +1,9 @@
 import { getMovieById } from 'components/services/Api';
-import React, { Suspense, useEffect, useState, useRef } from 'react';
+import React, { Suspense, useEffect, useState, useRef, lazy } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
+
+export const CastList = lazy(() => import('components/Cast/CastList'));
+export const Reviews = lazy(() => import('components/Reviews/Reviews'));
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();

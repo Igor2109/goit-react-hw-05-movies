@@ -6,7 +6,6 @@ const CastList = () => {
   const { movieId } = useParams();
 
   const [cast, setCast] = useState([]);
-
   useEffect(() => {
     const getMovieDetails = async () => {
       try {
@@ -16,7 +15,6 @@ const CastList = () => {
     };
     getMovieDetails();
   }, [movieId]);
-  console.log(cast);
   return (
     <ul>
       {cast &&

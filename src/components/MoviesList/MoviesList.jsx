@@ -2,7 +2,6 @@ import React from 'react';
 import MovieItem from './MovieItem';
 
 const MoviesList = ({ results }) => {
-  console.log(results);
   return (
     <ul>
       {results.map(({ id, name, title, poster_path }) => (

@@ -1,22 +1,43 @@
 import MoviesList from 'components/MoviesList/MoviesList';
 import { getTrendingTodayMovies } from 'components/services/Api';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
-  useEffect(()=> {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(
+    'Something went wrong! Try again later'
+  );
+  useEffect(() => {
+    setIsLoading(true);
     const getPopularMovies = async () => {
-    const {results} = await getTrendingTodayMovies();
-setMovies(results)    }
-    getPopularMovies()
-
-  },[])
+      try {
+        const { results } = await getTrendingTodayMovies();
+        setMovies(results);
+      } catch (error) {
+        setError(true);
+        setErrorMessage(error.message);
+      }
+    };
+    getPopularMovies();
+  }, []);
 
   return (
     <div>
-      <MoviesList results={movies}/>
+      {error && (
+        <div>
+          <p>{errorMessage}</p>
+        </div>
+      )}
+      {isLoading && (
+        <div>
+          <p></p>
+        </div>
+      )}
+      <MoviesList results={movies} />
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

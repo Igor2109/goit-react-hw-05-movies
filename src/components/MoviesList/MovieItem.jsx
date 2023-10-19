@@ -1,15 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+const defaultImg =
+  'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 const MovieItem = ({ id, title, poster_path }) => {
   return (
-
     <li>
-        <Link to={`/movies/${id}`}>
-      <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt="title" />
-      <h2>
-        {title}
-      </h2>
+      <Link to={`/movies/${id}`}>
+        <img
+          src={
+            poster_path
+              ? `https://image.tmdb.org/t/p/w500${poster_path}`
+              : defaultImg
+          }
+          alt="poster"
+        />
+        <h2>{title}</h2>
       </Link>
     </li>
   );
