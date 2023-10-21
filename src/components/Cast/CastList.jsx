@@ -21,7 +21,11 @@ const CastList = () => {
         cast.map(actor => (
           <li key={actor.id}>
             <img
-              src={`https://image.tmdb.org/t/p/w300${actor.profile_path}`}
+              src={
+                actor.profile_path
+                  ? `https://image.tmdb.org/t/p/w300${actor.profile_path}`
+                  : 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=300x300'
+              }
               alt={actor.name}
             />
             <h3>Name: {actor.name}</h3>

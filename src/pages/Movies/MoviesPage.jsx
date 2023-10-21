@@ -1,4 +1,4 @@
-import HomeList from 'components/HomeListItem/HomeList';
+import MoviesList from 'components/MoviesList/MoviesList';
 import { getSearchMoviesByQuery } from 'components/services/Api';
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -36,7 +36,7 @@ const MoviesPage = () => {
         </label>
         <button className="btnSubmit">Submit</button>
       </form>
-      {movies.length > 0 && <HomeList movies={movies} />}
+      {movies.length > 0 && <MoviesList results={movies} />}
     </div>
   );
 };

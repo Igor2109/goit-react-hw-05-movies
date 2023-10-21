@@ -4,13 +4,15 @@ import React, { useEffect, useState } from 'react';
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(
     'Something went wrong! Try again later'
   );
+
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoading(false);
+
     const getPopularMovies = async () => {
       try {
         const { results } = await getTrendingTodayMovies();
@@ -30,12 +32,13 @@ const HomePage = () => {
           <p>{errorMessage}</p>
         </div>
       )}
-      {isLoading && (
+      {isLoading ? (
         <div>
-          <p></p>
+          <p>Loading...</p>
         </div>
+      ) : (
+        <MoviesList results={movies} />
       )}
-      <MoviesList results={movies} />
     </div>
   );
 };

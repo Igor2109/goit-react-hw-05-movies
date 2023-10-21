@@ -36,7 +36,11 @@ const MovieDetailsPage = () => {
           <div>
             {' '}
             <img
-              src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+              src={
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+                  : 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700'
+              }
               alt={movie.title}
             />
             <h3>Title: {movie.title}</h3>
