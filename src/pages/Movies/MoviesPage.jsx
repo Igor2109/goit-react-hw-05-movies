@@ -6,16 +6,23 @@ import { useSearchParams } from 'react-router-dom';
 const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const query = searchParams.get('query');
 
   useEffect(() => {
     const getMovie = async () => {
+      setIsLoading(true);
       if (query) {
         try {
           const data = await getSearchMoviesByQuery(query);
           setMovies(data.results);
-        } catch (error) {}
+        } catch (error) {
+          setError(error.message);
+        } finally {
+          setIsLoading(false);
+        }
       }
     };
     getMovie();
@@ -28,16 +35,20 @@ const MoviesPage = () => {
     e.currentTarget.reset();
   };
   return (
-    <div>
-      <form onSubmit={handleOnSubmit}>
-        <label>
-          <p>Search movie by name</p>
-          <input className="input" type="text" name="searchMovieByName" />
-        </label>
-        <button className="btnSubmit">Submit</button>
-      </form>
-      {movies.length > 0 && <MoviesList results={movies} />}
-    </div>
+    isLoading,
+    error,
+    (
+      <div>
+        <form onSubmit={handleOnSubmit}>
+          <label>
+            <p>Search movie by name</p>
+            <input className="input" type="text" name="searchMovieByName" />
+          </label>
+          <button className="btnSubmit">Submit</button>
+        </form>
+        {movies.length > 0 && <MoviesList results={movies} />}
+      </div>
+    )
   );
 };
 
